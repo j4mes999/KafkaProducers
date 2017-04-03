@@ -19,7 +19,7 @@ import org.apache.kafka.common.serialization.Serdes;
  */
 public class StreamGenerator {
 
-    public static final long LONGSTART = 1000000000;
+    public static final long LONGSTART = 2000000000;
     public static final int NUMDISCTELEMENTS = 1000;
     public static final int MAXRANDOM =      4000;
     public static final int RANDOMLIMIT =    1000;
