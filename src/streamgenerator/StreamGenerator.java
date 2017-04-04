@@ -19,10 +19,10 @@ import org.apache.kafka.common.serialization.Serdes;
  */
 public class StreamGenerator {
 
-    public static final long LONGSTART = 2000000000;
-    public static final int NUMDISCTELEMENTS = 1000;
-    public static final int MAXRANDOM =      4000;
-    public static final int RANDOMLIMIT =    1000;
+    public static final long LONGSTART = 1000000000;
+    public static final int NUMDISCTELEMENTS = 1000000;
+    public static final int MAXRANDOM =      1000000;
+    public static final int RANDOMLIMIT =    1000000;
     
     /**
      * @param args the command line arguments
@@ -37,15 +37,23 @@ public class StreamGenerator {
         props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.LongSerializer");
         
-          Producer<String, Long> producer;
+        
+        
+        
+        Producer<String, Long> producer;
         producer = new org.apache.kafka.clients.producer.KafkaProducer<>(props);
-            List<Long> list = new ArrayList<>();
+        List<Long> list = new ArrayList<>();
 	  ProducerRecord<String, Long> record;
-          for(long i=LONGSTART; i<=LONGSTART+NUMDISCTELEMENTS; i++){
-              record = new ProducerRecord<>(topicName,anyKey,i);
-              list.add(i);
-              producer.send(record);
-          }
+//        for (long i = 1; i <= 10; i++) {
+//            record = new ProducerRecord<>(topicName, anyKey, i);
+//            list.add(i);
+//            producer.send(record);
+//        }
+          for (long i = LONGSTART; i <= LONGSTART + NUMDISCTELEMENTS; i++) {
+            record = new ProducerRecord<>(topicName, anyKey, i);
+            list.add(i);
+            producer.send(record);
+        }
           
           int countRandom = 0;
           long tem;
