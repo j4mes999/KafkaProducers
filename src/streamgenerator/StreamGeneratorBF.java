@@ -5,13 +5,9 @@
  */
 package streamgenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import static streamgenerator.StreamGeneratorFM.LONGSTART;
-import static streamgenerator.StreamGeneratorFM.NUMDISCTELEMENTS;
 
 /**
  *
@@ -21,7 +17,7 @@ public class StreamGeneratorBF {
 
     
     public static final int STARTNUM = 1000000000;
-    public static final int ELEMENTSNUM = 100;
+    public static final int ELEMENTSNUM = 100000;
 
     public static void main(String[] args) {
         String topicName = "BloomFilterTopic";
@@ -37,7 +33,7 @@ public class StreamGeneratorBF {
 
         ProducerRecord<String, Long> record;
         //Elements in S
-        for (long i = STARTNUM; i < STARTNUM + ELEMENTSNUM / 2; i++) {
+        for (long i = STARTNUM; i < STARTNUM + ELEMENTSNUM ; i++) {
             record = new ProducerRecord<>(topicName, anyKey, i);
             producer.send(record);
         }
